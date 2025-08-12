@@ -5,8 +5,17 @@ services:
       - mysql.env
     volumes:
       - C:\Sandesh\Study\New_Project\Vol:/var/lib/mysql
+    networks:
+      - new_network
+    
   web:
-    image: phpmyadmin:${TAG1}
+    image: phpmyadmin
     restart: always
     ports:
       - 8081:80
+    networks:
+      - new_network
+
+networks:
+  new_network:
+    driver: bridge
