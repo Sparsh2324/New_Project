@@ -3,6 +3,8 @@ services:
     image: mysql:${TAG}
     env_file:
       - mysql.env
+    volumes:
+      - C:\Sandesh\Study\New_Project\Vol:/var/lib/mysql
   web:
     image: phpmyadmin:${TAG1}
     restart: always
