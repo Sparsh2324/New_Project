@@ -4,7 +4,7 @@ services:
     env_file:
       - mysql.env
   web:
-    image: phpmyadmin
+    image: phpmyadmin:${TAG1}
     restart: always
     ports:
       - 8081:80
