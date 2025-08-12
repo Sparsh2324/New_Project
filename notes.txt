@@ -1,0 +1,8 @@
+Docker compose
+
+services:
+  web: (service name)
+    image: (whatever image you want to deploy)
+    environment: (whenever require, mostly use in DB)
+    ports: "machine port:container port"
+    

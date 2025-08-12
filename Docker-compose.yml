@@ -1,0 +1,10 @@
+services:
+  db:
+    image: mysql:${TAG}
+    env_file:
+      - mysql.env
+  web:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
