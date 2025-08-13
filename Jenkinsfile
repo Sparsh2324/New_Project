@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Verify the configuration') {
             steps {
                 echo 'Building..'
                 sh '''
@@ -12,14 +12,17 @@ pipeline {
                 '''
             }
         }
-        stage('Deploy') {
+        stage('remove docker data') {
             steps {
                 echo 'Deploying..'
+                sh 'docker system prune -a --volumes -f'
             }
         }
-        stage('Push to dockerhub') {
+        stage('Start the container') {
             steps {
-                echo 'push to dockerhub....'
+                echo 'start the container....'
+                sh 'docker compose up -d'
+                sh 'docker compose ps'
             }
         }
     }
