@@ -18,7 +18,7 @@ pipeline {
                 sh 'docker system prune -a --volumes -f'
             }
         }
-        stage(clonning the repository){
+        stage('clonning the repository') {
             steps {
                 git branch: 'main', url: 'https://github.com/Sparsh2324/New_Project.git'
             }
@@ -28,6 +28,19 @@ pipeline {
                 echo 'start the container....'
                 sh 'docker compose up -d'
                 sh 'docker compose ps'
+                sh 'docker ps'
+            }
+        }
+        stage('push to docker hub') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'dockerhubcred', variable: 'dockerlogin')]) {
+                    sh 'docker login -u sparsh2324 -p ${dockerlogin}'
+                    sh 'docker image tag phpmyadmin sparsh2324/phpmyadmin'
+                    sh 'docker push sparsh2324/phpmyadmin'
+}
+                }
+
             }
         }
     }
