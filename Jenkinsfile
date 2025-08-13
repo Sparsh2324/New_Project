@@ -28,7 +28,6 @@ pipeline {
                 echo 'start the container....'
                 sh 'docker compose up -d'
                 sh 'docker compose ps'
-                sh 'docker ps'
             }
         }
         stage('push to docker hub') {
